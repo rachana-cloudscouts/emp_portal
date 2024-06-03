@@ -23,11 +23,14 @@ CREATE TABLE IF NOT EXISTS timesheet_entries (
     work_date DATE,
     hours_worked TIME WITHOUT TIME ZONE,
     notes TEXT,
-    project_role TEXT,
+    project_role INTEGER NOT NULL,
     CONSTRAINT fk_timesheet
         FOREIGN KEY(timesheet_id) 
         REFERENCES timesheets(timesheet_id),
     CONSTRAINT fk_project
         FOREIGN KEY(projectid) 
-        REFERENCES projects(projectid)
+        REFERENCES projects(projectid),
+	CONSTRAINT fk_projectrole
+        FOREIGN KEY(project_role) 
+        REFERENCES project_roles(role_id)
 );
